@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Patel | Odoo Developer & ERP Specialist</title>
+    <meta name="description" content="Results-oriented Odoo ERP Developer with expertise in Odoo v16-v19 development, ERP migration, workflow automation, and custom module engineering.">
+    
+    <!-- Bootstrap 5 CSS (Only 1 lightweight CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- Base & Variables --- */
+        :root {
+            --primary: #4F46E5;
+            --primary-light: #818CF8;
+            --secondary: #06B6D4;
+            --accent: #8B5CF6;
+            --bg-dark: #0F172A;
+            --bg-surface: #1E293B;
+            --text-light: #F8FAFC;
+            --text-muted: #94A3B8;
+            --success: #10B981;
+            --glass-bg: rgba(30, 41, 59, 0.6);
+            --glass-border: rgba(148, 163, 184, 0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::selection {
+            background: rgba(79,70,229,0.4);
+            color: #fff;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+        /* --- Utilities --- */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            border: 1px solid rgba(148,163,184,0.3);
+            color: var(--text-muted);
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* --- Animations --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40%/50% 60% 30% 60%; }
+        }
+
+        @keyframes spin-slow {
+            to { transform: rotate(360deg); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(79,70,229,0.2) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        .blob-1 { top: -100px; left: -100px; }
+        .blob-2 { bottom: -100px; right: -100px; animation-delay: -4s; background: radial-gradient(circle, rgba(139,92,246,0.2) 0%, rgba(0,0,0,0) 70%); }
+
+        .avatar-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            inset: -16px;
+            border: 1px solid rgba(79,70,229,0.2);
+            border-radius: 50%;
+            animation: spin-slow 20s linear infinite;
+        }
+
+        .avatar-ring-2 {
+            position: absolute;
+            inset: -32px;
+            border: 1px solid rgba(139,92,246,0.1);
+            border-radius: 50%;
+            animation: spin-slow 30s linear infinite reverse;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid rgba(79,70,229,0.3);
+            box-shadow: 0 0 40px rgba(79,70,229,0.2);
+        }
+
+        .floating-badge {
+            position: absolute;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: float 6s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        /* --- Cards --- */
+        .custom-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 100%;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px -8px rgba(79, 70, 229, 0.2);
+        }
+
+        /* --- Skill Bar --- */
+        .skill-bar {
+            height: 6px;
+            background: rgba(148,163,184,0.15);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .skill-fill {
+            height: 100%;
+            border-radius: 999px;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* --- Timeline --- */
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 8px;
+            bottom: -48px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary), transparent);
+        }
+
+        .timeline-item:last-child::before { display: none; }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            background: var(--bg-dark);
+        }
+
+        /* --- Chatbot --- */
+        .chat-window {
+            position: fixed;
+            bottom: 100px;
+            left: 24px;
+            width: 350px;
+            max-width: calc(100vw - 48px);
+            z-index: 1050;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .chat-window.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .chat-toggle {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 1050;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(79,70,229,0.4);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .chat-toggle:hover { transform: scale(1.1); }
+
+        /* --- Scroll to top --- */
+        .scroll-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1040;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(16px);
+            transition: all 0.3s;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* --- Loader --- */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s, visibility 0.4s;
+        }
+
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(79,70,229,0.2);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin-slow 1s linear infinite;
+        }
+
+        /* SVG Icons */
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        .icon-lg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="text-center">
+            <div class="loader-spinner mx-auto mb-3"></div>
+            <p class="text-uppercase small" style="color: var(--primary-light); letter-spacing: 3px;">Loading</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed-top py-3 transition-all" style="z-index: 1040;">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="#hero" class="text-decoration-none d-flex align-items-center gap-2">
+                    <div style="width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg, var(--primary), var(--accent)); display:flex; align-items:center; justify-content:center; color:white; font-weight:700;">O</div>
+                    <span class="fw-bold fs-5 text-white">Om<span style="color: var(--primary-light)">.dev</span></span>
+                </a>
+                
+                <!-- Desktop Nav -->
+                <div class="d-none d-lg-flex align-items-center gap-4">
+                    <a href="#about" class="text-decoration-none" style="color: var(--text-muted); font-size: 14px;">About</a>
+                    <a href="#skills" class="text-decoration-none" style="color: var(--text-muted); font-size: 14px;">Skills</a>
+                    <a href="#projects" class="text-decoration-none" style="color: var(--text-muted); font-size: 14px;">Projects</a>
+                    <a href="#experience" class="text-decoration-none" style="color: var(--text-muted); font-size: 14px;">Experience</a>
+                    <a href="#services" class="text-decoration-none" style="color: var(--text-muted); font-size: 14px;">Services</a>
+                    <a href="#contact" class="btn-primary-custom py-2 px-4" style="font-size: 14px;">Hire Me</a>
+                </div>
+
+                <!-- Mobile Toggle -->
+                <button id="mobile-menu-btn" class="d-lg-none bg-transparent border-0 text-white p-2">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="glass mt-3 p-4 d-none">
+                <a href="#about" class="d-block py-2 text-decoration-none" style="color: var(--text-muted)">About</a>
+                <a href="#skills" class="d-block py-2 text-decoration-none" style="color: var(--text-muted)">Skills</a>
+                <a href="#projects" class="d-block py-2 text-decoration-none" style="color: var(--text-muted)">Projects</a>
+                <a href="#experience" class="d-block py-2 text-decoration-none" style="color: var(--text-muted)">Experience</a>
+                <a href="#services" class="d-block py-2 text-decoration-none" style="color: var(--text-muted)">Services</a>
+                <a href="#contact" class="d-block py-2 text-decoration-none" style="color: var(--text-muted)">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-bg-blob blob-1"></div>
+        <div class="hero-bg-blob blob-2"></div>
+        
+        <div class="container position-relative" style="z-index: 2;">
+            <div class="row align-items-center min-vh-100 g-5">
+                <div class="col-lg-7 text-center text-lg-start">
+                    <div class="glass d-inline-flex align-items-center gap-2 px-3 py-2 mb-4" style="border-radius: 50px; font-size: 14px;">
+                        <span style="width:8px; height:8px; background:var(--success); border-radius:50%; display:inline-block;"></span>
+                        <span style="color: var(--text-muted)">Available for opportunities</span>
+                    </div>
+                    
+                    <h1 class="display-3 fw-bold mb-3" style="line-height: 1.1;">
+                        Hi, I'm <br><span class="gradient-text">Om Patel</span>
+                    </h1>
+                    
+                    <p class="fs-4 mb-4" style="color: var(--text-muted); font-weight: 300;">
+                        Odoo Developer & <span style="color: var(--secondary)">ERP Specialist</span>
+                    </p>
+                    
+                    <p class="mb-5 mx-auto mx-lg-0" style="max-width: 600px; color: var(--text-muted);">
+                        Results-oriented developer with expertise in Odoo v16–v19, ERP migration, workflow automation, and custom module engineering. Building efficient, user-centric systems.
+                    </p>
+                    
+                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                        <a href="#projects" class="btn-primary-custom">
+                            View Projects
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                        </a>
+                        <a href="#contact" class="btn-outline-custom">Contact Me</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5 d-flex justify-content-center">
+                    <div class="avatar-container">
+                        <div class="avatar-ring"></div>
+                        <div class="avatar-ring-2"></div>
+                        <img src="https://picsum.photos/seed/ompatel-dev/400/400.jpg" alt="Om Patel" class="avatar-img">
+                        
+                        <div class="floating-badge glass" style="top: -10px; right: -20px; animation-delay: -1s;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+                            Python
+                        </div>
+                        
+                        <div class="floating-badge glass" style="bottom: 10px; left: -30px; animation-delay: -3s;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#818CF8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            Odoo
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 py-lg-5" style="margin-top: 40px; margin-bottom: 40px;">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="glass px-3 py-1 d-inline-block mb-3" style="border-radius: 50px; font-size: 12px; color: var(--primary-light); letter-spacing: 2px;">ABOUT ME</span>
+                <h2 class="fw-bold display-6">Crafting <span class="gradient-text">Digital Solutions</span></h2>
+            </div>
+            
+            <div class="row g-5 align-items-start">
+                <div class="col-lg-6 reveal">
+                    <h3 class="fw-bold mb-4">Passionate Odoo Developer in <span style="color: var(--secondary)">Ahmedabad</span></h3>
+                    <p style="color: var(--text-muted);">I'm a results-oriented Odoo ERP Developer with hands-on expertise in Odoo v16–v19 development, ERP migration, workflow automation, and custom module engineering. I design scalable business solutions across CRM, Sales, Inventory, Purchase, and Website modules.</p>
+                    <p class="mt-3" style="color: var(--text-muted);">Experienced in leading full-cycle ERP migrations, integrating third-party APIs, and developing production-ready custom applications for both Community and Enterprise editions.</p>
+                    
+                    <div class="row g-3 mt-4">
+                        <div class="col-6 d-flex align-items-center gap-2">
+                            <svg width="18" height="18" fill="none" stroke="var(--primary-light)" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span style="font-size: 14px;">Ahmedabad, India</span>
+                        </div>
+                        <div class="col-6 d-flex align-items-center gap-2">
+                            <svg width="18" height="18" fill="none" stroke="var(--primary-light)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                            <span style="font-size: 14px;">B.E. IT - CGPA 7.50</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 reveal">
+                    <div class="row g-3 mb-4">
+                        <div class="col-6"><div class="glass p-4 text-center"><h3 class="fw-bold gradient-text mb-0 counter" data-target="2">0</h3><small style="color: var(--text-muted)">Years Exp.</small></div></div>
+                        <div class="col-6"><div class="glass p-4 text-center"><h3 class="fw-bold gradient-text mb-0 counter" data-target="15">0</h3><small style="color: var(--text-muted)">Projects</small></div></div>
+                        <div class="col-6"><div class="glass p-4 text-center"><h3 class="fw-bold gradient-text mb-0 counter" data-target="10">0</h3><small style="color: var(--text-muted)">Happy Clients</small></div></div>
+                        <div class="col-6"><div class="glass p-4 text-center"><h3 class="fw-bold gradient-text mb-0 counter" data-target="8">0</h3><small style="color: var(--text-muted)">App Modules</small></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5" style="margin-bottom: 40px;">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="glass px-3 py-1 d-inline-block mb-3" style="border-radius: 50px; font-size: 12px; color: var(--accent); letter-spacing: 2px;">SKILLS</span>
+                <h2 class="fw-bold display-6">Technical <span class="gradient-text">Arsenal</span></h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="glass p-4 custom-card">
+                        <div class="p-2 d-inline-flex rounded-3 mb-4" style="background: rgba(79,70,229,0.15);">
+                            <svg width="28" height="28" fill="none" stroke="var(--primary-light)" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <h4 class="fw-bold mb-4">Frontend Development</h4>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small mb-1"><span>JavaScript / OWL</span><span style="color:var(--primary-light)">90%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" style="--skill-level:90%; background: linear-gradient(to right, var(--primary), var(--secondary));"></div></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small mb-1"><span>Bootstrap / SCSS</span><span style="color:var(--primary-light)">80%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" style="--skill-level:80%; background: linear-gradient(to right, var(--primary), var(--secondary));"></div></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="glass p-4 custom-card">
+                        <div class="p-2 d-inline-flex rounded-3 mb-4" style="background: rgba(139,92,246,0.15);">
+                            <svg width="28" height="28" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                        </div>
+                        <h4 class="fw-bold mb-4">Backend Development</h4>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small mb-1"><span>Python / Odoo ORM</span><span style="color:var(--accent)">95%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" style="--skill-level:95%; background: linear-gradient(to right, var(--accent), #ec4899);"></div></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small mb-1"><span>XML / QWeb</span><span style="color:var(--accent)">90%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" style="--skill-level:90%; background: linear-gradient(to right, var(--accent), #ec4899);"></div></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="glass p-4 custom-card">
+                        <div class="p-2 d-inline-flex rounded-3 mb-4" style="background: rgba(6,182,212,0.15);">
+                            <svg width="28" height="28" fill="none" stroke="var(--secondary)" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                        </div>
+                        <h4 class="fw-bold mb-4">Database & API</h4>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small mb-1"><span>PostgreSQL</span><span style="color:var(--secondary)">85%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" style="--skill-level:85%; background: linear-gradient(to right, var(--secondary), var(--success));"></div></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small mb-1"><span>REST API Integration</span><span style="color:var(--secondary)">88%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" style="--skill-level:88%; background: linear-gradient(to right, var(--secondary), var(--success));"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5" style="margin-bottom: 40px;">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="glass px-3 py-1 d-inline-block mb-3" style="border-radius: 50px; font-size: 12px; color: var(--secondary); letter-spacing: 2px;">PORTFOLIO</span>
+                <h2 class="fw-bold display-6">Featured <span class="gradient-text">Projects</span></h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6 reveal">
+                    <div class="glass overflow-hidden custom-card">
+                        <img src="https://picsum.photos/seed/migration-erp/700/400.jpg" class="w-100" style="height:240px; object-fit:cover;" alt="Mechpower" loading="lazy">
+                        <div class="p-4">
+                            <span class="small fw-bold px-2 py-1 rounded" style="background: rgba(79,70,229,0.2); color: var(--primary-light)">Migration</span>
+                            <h4 class="fw-bold mt-3 mb-2">Mechpower Technology</h4>
+                            <p class="small" style="color: var(--text-muted)">Full-scale ERP migration from Odoo v16 to v19 with workflow automation across CRM, Sales, Purchase modules.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 reveal">
+                    <div class="glass overflow-hidden custom-card">
+                        <img src="https://picsum.photos/seed/plastic-erp/700/400.jpg" class="w-100" style="height:240px; object-fit:cover;" alt="Chetan" loading="lazy">
+                        <div class="p-4">
+                            <span class="small fw-bold px-2 py-1 rounded" style="background: rgba(6,182,212,0.2); color: var(--secondary)">Migration</span>
+                            <h4 class="fw-bold mt-3 mb-2">Chetan Plastic</h4>
+                            <p class="small" style="color: var(--text-muted)">End-to-end ERP migration from Odoo v16 to v17 for a plastics manufacturing firm with minimal downtime.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-5" style="margin-bottom: 40px;">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="glass px-3 py-1 d-inline-block mb-3" style="border-radius: 50px; font-size: 12px; color: var(--primary-light); letter-spacing: 2px;">CAREER</span>
+                <h2 class="fw-bold display-6">Work <span class="gradient-text">Experience</span></h2>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="glass p-4 custom-card">
+                            <div class="d-flex flex-wrap justify-content-between align-items-start mb-3 gap-2">
+                                <div>
+                                    <h4 class="fw-bold mb-1">Odoo Developer</h4>
+                                    <p class="small fw-bold" style="color: var(--primary-light)">CandidRoot Solutions Pvt Ltd</p>
+                                </div>
+                                <span class="small glass px-2 py-1" style="border-radius: 8px; color: var(--secondary)">Jan 2025 — Present</span>
+                            </div>
+                            <ul class="list-unstyled mt-3">
+                                <li class="d-flex gap-2 mb-2 small" style="color: var(--text-muted)">
+                                    <svg width="16" height="16" fill="none" stroke="var(--success)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    Architect custom Odoo modules across CRM, Sales, Inventory, Purchase
+                                </li>
+                                <li class="d-flex gap-2 mb-2 small" style="color: var(--text-muted)">
+                                    <svg width="16" height="16" fill="none" stroke="var(--success)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    Lead version migration projects (v16→v17→v18→v19) with zero data loss
+                                </li>
+                                <li class="d-flex gap-2 mb-2 small" style="color: var(--text-muted)">
+                                    <svg width="16" height="16" fill="none" stroke="var(--success)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    Integrate third-party REST APIs including payment gateways
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot" style="border-color: var(--accent)"></div>
+                        <div class="glass p-4 custom-card">
+                            <h4 class="fw-bold mb-1">B.E. Information Technology</h4>
+                            <p class="small fw-bold" style="color: var(--accent)">LDRP Institute of Technology and Research</p>
+                            <p class="small mt-2" style="color: var(--text-muted)">Gandhinagar, India • CGPA: 7.50</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5" style="margin-bottom: 40px;">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="glass px-3 py-1 d-inline-block mb-3" style="border-radius: 50px; font-size: 12px; color: var(--success); letter-spacing: 2px;">SERVICES</span>
+                <h2 class="fw-bold display-6">What I <span class="gradient-text">Offer</span></h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="glass p-4 custom-card text-center text-md-start">
+                        <div class="p-2 d-inline-flex rounded-3 mb-3" style="background: rgba(79,70,229,0.15);">
+                            <svg width="28" height="28" fill="none" stroke="var(--primary-light)" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <h5 class="fw-bold">Odoo Development</h5>
+                        <p class="small" style="color: var(--text-muted)">Custom module development across CRM, Sales, Inventory, and Website verticals.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="glass p-4 custom-card text-center text-md-start">
+                        <div class="p-2 d-inline-flex rounded-3 mb-3" style="background: rgba(6,182,212,0.15);">
+                            <svg width="28" height="28" fill="none" stroke="var(--secondary)" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                        </div>
+                        <h5 class="fw-bold">ERP Migration</h5>
+                        <p class="small" style="color: var(--text-muted)">End-to-end version migration from Odoo v16 to v19 with zero data loss guarantee.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="glass p-4 custom-card text-center text-md-start">
+                        <div class="p-2 d-inline-flex rounded-3 mb-3" style="background: rgba(16,185,129,0.15);">
+                            <svg width="28" height="28" fill="none" stroke="var(--success)" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </div>
+                        <h5 class="fw-bold">API Integration</h5>
+                        <p class="small" style="color: var(--text-muted)">Third-party REST API integration including payment gateways and logistics providers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5" style="margin-bottom: 40px;">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="glass px-3 py-1 d-inline-block mb-3" style="border-radius: 50px; font-size: 12px; color: var(--secondary); letter-spacing: 2px;">CONTACT</span>
+                <h2 class="fw-bold display-6">Let's <span class="gradient-text">Connect</span></h2>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-8 reveal">
+                    <div class="glass p-4 p-md-5">
+                        <form id="contact-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small">Name</label>
+                                    <input type="text" class="form-control bg-transparent text-white border-secondary" placeholder="Your name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small">Email</label>
+                                    <input type="email" class="form-control bg-transparent text-white border-secondary" placeholder="your@email.com" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small">Subject</label>
+                                    <input type="text" class="form-control bg-transparent text-white border-secondary" placeholder="Project discussion">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small">Message</label>
+                                    <textarea class="form-control bg-transparent text-white border-secondary" rows="4" placeholder="Tell me about your project..." required></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn-primary-custom w-100 justify-content-center">
+                                        Send Message
+                                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 reveal">
+                    <div class="glass p-4 mb-3">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="p-2 rounded-3" style="background: rgba(79,70,229,0.15);">
+                                <svg width="20" height="20" fill="none" stroke="var(--primary-light)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </div>
+                            <div>
+                                <small style="color: var(--text-muted)">Email</small>
+                                <p class="small fw-bold mb-0">omp042004@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="p-2 rounded-3" style="background: rgba(6,182,212,0.15);">
+                                <svg width="20" height="20" fill="none" stroke="var(--secondary)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <div>
+                                <small style="color: var(--text-muted)">Phone</small>
+                                <p class="small fw-bold mb-0">+91 9512760633</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5" style="border-top: 1px solid rgba(148,163,184,0.1);">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <div style="width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--primary), var(--accent)); display:flex; align-items:center; justify-content:center; color:white; font-weight:700;">O</div>
+                        <span class="fw-bold fs-5 text-white">Om<span style="color: var(--primary-light)">.dev</span></span>
+                    </div>
+                    <p class="small" style="color: var(--text-muted); max-width: 350px;">Results-oriented Odoo ERP Developer building efficient, user-centric ERP systems that accelerate business growth.</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <p class="small" style="color: var(--text-muted);">&copy; 2025 Om Patel. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <button class="chat-toggle" id="chat-toggle-btn">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </button>
+    
+    <div class="chat-window glass" id="chat-window">
+        <div class="p-3 d-flex justify-content-between align-items-center" style="background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 16px 16px 0 0;">
+            <span class="fw-bold text-white small">Om's AI Assistant</span>
+            <button id="chat-close-btn" style="background:none; border:none; color:white;">✕</button>
+        </div>
+        <div class="p-3" style="height: 200px; overflow-y: auto; background: rgba(15,23,42,0.8);">
+            <div class="d-flex gap-2 mb-3">
+                <div class="glass rounded p-2" style="max-width: 80%;">
+                    <p class="small mb-0">Hi! Ask about Om's skills or projects!</p>
+                </div>
+            </div>
+        </div>
+        <div class="p-3 border-top border-secondary" style="background: rgba(15,23,42,0.8); border-radius: 0 0 16px 16px;">
+            <form id="chat-form" class="d-flex gap-2">
+                <input type="text" class="form-control form-control-sm bg-transparent text-white border-secondary" placeholder="Type a message..." required>
+                <button type="submit" class="btn btn-sm text-white px-3" style="background: var(--primary);">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scroll-top-btn">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <!-- Toast Notification -->
+    <div id="toast" style="position:fixed; bottom:30px; right:30px; z-index:9999; padding:14px 22px; border-radius:12px; background:var(--bg-surface); border:1px solid var(--success); color:white; transform:translateY(80px); opacity:0; transition:all 0.4s;">
+        <p class="small fw-bold mb-0" id="toast-msg"></p>
+    </div>
+
+    <!-- Pure Vanilla JavaScript - No Libraries -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- 1. Fast Loader ---
+            const loader = document.getElementById('loader');
+            setTimeout(() => loader.classList.add('hidden'), 300);
+            window.addEventListener('load', () => loader.classList.add('hidden'));
+
+            // --- 2. Navbar Scroll Effect ---
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(15, 23, 42, 0.9)';
+                    navbar.style.backdropFilter = 'blur(16px)';
+                    navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.2)';
+                } else {
+                    navbar.style.background = 'transparent';
+                    navbar.style.backdropFilter = 'none';
+                    navbar.style.boxShadow = 'none';
+                }
+            });
+
+            // --- 3. Mobile Menu ---
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('d-none');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('d-none'));
+            });
+
+            // --- 4. Scroll Reveal (Lightweight Intersection Observer) ---
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            reveals.forEach(el => observer.observe(el));
+
+            // --- 5. Skill Bars Animation ---
+            const skillFills = document.querySelectorAll('.skill-fill');
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.width = entry.target.style.getPropertyValue('--skill-level');
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            skillFills.forEach(el => skillObserver.observe(el));
+
+            // --- 6. Counters Animation ---
+            const counters = document.querySelectorAll('.counter');
+            let counterDone = false;
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !counterDone) {
+                        counterDone = true;
+                        counters.forEach(c => {
+                            const target = +c.getAttribute('data-target');
+                            const duration = 1500;
+                            const start = performance.now();
+                            
+                            function update(now) {
+                                const elapsed = now - start;
+                                const progress = Math.min(elapsed / duration, 1);
+                                // Ease out cubic
+                                const eased = 1 - Math.pow(1 - progress, 3);
+                                c.textContent = Math.round(eased * target) + '+';
+                                if (progress < 1) requestAnimationFrame(update);
+                            }
+                            requestAnimationFrame(update);
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            counters.forEach(c => counterObserver.observe(c.closest('.glass')));
+
+            // --- 7. Scroll to Top ---
+            const scrollTopBtn = document.getElementById('scroll-top-btn');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // --- 8. Chatbot UI ---
+            const chatToggle = document.getElementById('chat-toggle-btn');
+            const chatClose = document.getElementById('chat-close-btn');
+            const chatWindow = document.getElementById('chat-window');
+
+            chatToggle.addEventListener('click', () => chatWindow.classList.toggle('active'));
+            chatClose.addEventListener('click', () => chatWindow.classList.remove('active'));
+
+            // Chatbot Logic
+            const chatForm = document.getElementById('chat-form');
+            const chatInput = chatForm.querySelector('input');
+            const chatMessages = chatWindow.querySelector('.p-3:nth-child(2)');
+
+            function addMessage(msg, isUser = false) {
+                const div = document.createElement('div');
+                div.className = 'd-flex gap-2 mb-3' + (isUser ? ' justify-content-end' : '');
+                div.innerHTML = `<div class="glass rounded p-2" style="max-width: 80%;"><p class="small mb-0">${msg}</p></div>`;
+                chatMessages.appendChild(div);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function getBotReply(msg) {
+                const m = msg.toLowerCase();
+                if (m.includes('skill') || m.includes('tech')) return 'Om specializes in Python, Odoo ORM, XML/QWeb, JavaScript/OWL, PostgreSQL, REST API.';
+                if (m.includes('experience') || m.includes('work')) return 'Om works at CandidRoot Solutions leading ERP migrations and custom module development.';
+                if (m.includes('project')) return 'Key projects: Mechpower Technology v16→v19 migration, Chetan Plastic migration, and App Store modules.';
+                if (m.includes('odoo')) return 'Expert in Odoo v16, v17, v18, v19 — both Community and Enterprise editions.';
+                if (m.includes('contact') || m.includes('email')) return 'Email: omp042004@gmail.com | Phone: +91 9512760633';
+                return 'Thanks for your interest! Ask about skills, experience, or projects.';
+            }
+
+            chatForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const msg = chatInput.value.trim();
+                if (!msg) return;
+                addMessage(msg, true);
+                chatInput.value = '';
+                setTimeout(() => addMessage(getBotReply(msg)), 600);
+            });
+
+            // --- 9. Contact Form Validation & Toast ---
+            const contactForm = document.getElementById('contact-form');
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+
+            function showToast(message) {
+                toastMsg.textContent = message;
+                toast.style.transform = 'translateY(0)';
+                toast.style.opacity = '1';
+                setTimeout(() => {
+                    toast.style.transform = 'translateY(80px)';
+                    toast.style.opacity = '0';
+                }, 3000);
+            }
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let valid = true;
+                contactForm.querySelectorAll('[required]').forEach(input => {
+                    if (!input.value.trim()) valid = false;
+                });
+                if (valid) {
+                    showToast('Message sent successfully!');
+                    contactForm.reset();
+                } else {
+                    showToast('Please fill in all required fields.');
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
